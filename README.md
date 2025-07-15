@@ -25,3 +25,73 @@ onde dedico todo o meu tempo nas tecnologias para atender o mercado <p>
 ![react](https://user-images.githubusercontent.com/85317897/200671800-dfec726d-250f-4cad-898f-cb065f69c3d1.png)
 ![electron](https://user-images.githubusercontent.com/85317897/200671778-2698f5b7-4806-4e66-aef6-0e8c0b7560d1.png)
 
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jogo Adivinhe o Número</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: 50px auto; text-align: center; }
+    input { padding: 8px; width: 60px; font-size: 16px; }
+    button { padding: 8px 12px; font-size: 16px; }
+    #resultado { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Jogo: Adivinhe o Número 🎯</h1>
+  <p>Tente adivinhar o número secreto entre 1 e 10.</p>
+  <p>Você tem <span id="tentativas">3</span> tentativas.</p>
+
+  <input type="number" id="palpite" min="1" max="10" />
+  <button onclick="tentar()">Tentar</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    const numeroSecreto = Math.floor(Math.random() * 10) + 1;
+    let tentativas = 3;
+
+    function tentar() {
+      const palpiteInput = document.getElementById('palpite');
+      const resultado = document.getElementById('resultado');
+      let palpite = Number(palpiteInput.value);
+
+      if (!palpite || palpite < 1 || palpite > 10) {
+        resultado.textContent = 'Digite um número entre 1 e 10!';
+        return;
+      }
+
+      if (palpite === numeroSecreto) {
+        resultado.textContent = '🎉 Parabéns! Você acertou!';
+        document.getElementById('tentativas').textContent = tentativas;
+        palpiteInput.disabled = true;
+        return;
+      }
+
+      tentativas--;
+      if (tentativas === 0) {
+        resultado.textContent = `Suas tentativas acabaram! O número era ${numeroSecreto}.`;
+        palpiteInput.disabled = true;
+        document.getElementById('tentativas').textContent = tentativas;
+        return;
+      }
+
+      resultado.textContent = `Errado! Tente novamente. Tentativas restantes: ${tentativas}`;
+      document.getElementById('tentativas').textContent = tentativas;
+      palpiteInput.value = '';
+      palpiteInput.focus();
+    }
+  </script>
+</body>
+</html>
+
+
