@@ -29,7 +29,3 @@ onde dedico todo o meu tempo nas tecnologias para atender o mercado <p>
 
 
 
-
-
-
-
